@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar user={"Bill Gates"} fruit={"apple" } />
     </>
   )
 }

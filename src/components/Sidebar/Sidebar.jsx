@@ -3,15 +3,17 @@ import Nav from "../Nav/Nav"
 import User from "../User/User"
 
 
-function Sidebar() {
+function Sidebar({user,fruit}) {
+  console.log(user);
     return (
-      <sidebar>
+      <div>
             <Logo />
             <div>
                 <Nav />
-                <User />
-            </div>
-      </sidebar>
+          <User userName={user} />
+        </div>
+        <p>{ fruit}</p>
+      </div>
   )
 }
 

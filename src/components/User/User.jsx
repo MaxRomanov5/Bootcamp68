@@ -1,6 +1,6 @@
-function User() {
+function User({userName}) {
   return (
-    <div>User</div>
+    <div>{userName}</div>
   )
 }
 
