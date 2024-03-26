@@ -1,12 +1,15 @@
+import css from "./Nav.module.css";
+import clsx from "clsx";
+
 function Nav({ data }) {
   return (
     <div>
       <ul>
         {data.map((menuItem) => {
           return (
-            <li>
+            <li key={menuItem.id} className={ css.item}>
               {menuItem.icon}
-              <p>{menuItem.name}</p>
+              <p className={ "text " + clsx(menuItem.isActive ? css.active : css.inactive)}>{menuItem.name}</p>
             </li>
           );
         })}
