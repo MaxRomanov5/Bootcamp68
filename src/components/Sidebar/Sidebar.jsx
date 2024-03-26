@@ -1,20 +1,20 @@
-import Logo from "../Logo/Logo"
-import Nav from "../Nav/Nav"
-import User from "../User/User"
+import Logo from "../Logo/Logo";
+import Nav from "../Nav/Nav";
+import User from "../User/User";
+import { menuConfig } from "../../Data/menu";
 
-
-function Sidebar({user,fruit}) {
+function Sidebar({ user, fruit }) {
   console.log(user);
-    return (
+  return (
+    <div>
+      <Logo />
       <div>
-            <Logo />
-            <div>
-                <Nav />
-          <User userName={user} />
-        </div>
-        <p>{ fruit}</p>
+        <Nav data={menuConfig} />
+        <User userName={user} />
       </div>
-  )
+      <p>{fruit}</p>
+    </div>
+  );
 }
 
-export default Sidebar
+export default Sidebar;

@@ -1,12 +1,18 @@
-function Nav() {
+function Nav({ data }) {
   return (
-      <div>
-          <ul>
-              <li>Университет</li>
-              <li>Факультеты</li>
-          </ul>
+    <div>
+      <ul>
+        {data.map((menuItem) => {
+          return (
+            <li>
+              {menuItem.icon}
+              <p>{menuItem.name}</p>
+            </li>
+          );
+        })}
+      </ul>
     </div>
-  )
+  );
 }
 
-export default Nav
+export default Nav;

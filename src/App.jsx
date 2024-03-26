@@ -1,13 +1,12 @@
-import './App.css'
-import Sidebar from './components/Sidebar/Sidebar.jsx'
+import "./App.css";
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
 
 function App() {
-
   return (
     <>
-      <Sidebar user={"Bill Gates"} fruit={"apple" } />
+      <Sidebar user={"Bill Gates"} fruit={"apple"} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
