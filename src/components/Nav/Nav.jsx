@@ -9,7 +9,8 @@ function Nav({ data }) {
           return (
             <li key={menuItem.id} className={ css.item}>
               {menuItem.icon}
-              <p className={ "text " + clsx(menuItem.isActive ? css.active : css.inactive)}>{menuItem.name}</p>
+              <p className={"text " + clsx(menuItem.isActive ? css.active : css.inactive)}>{menuItem.name}</p>
+              <p>{ menuItem.isActive ? "active" : "inactive"}</p>
             </li>
           );
         })}
