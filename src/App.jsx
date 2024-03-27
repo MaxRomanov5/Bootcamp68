@@ -1,11 +1,13 @@
 import './App.css'
-import Sidebar from './components/Sidebar/Sidebar.jsx'
+import Employee from './components/Employee/Employee'
+// import Sidebar from './components/Sidebar/Sidebar.jsx'
 
 function App() {
 
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <Employee name={"Antonio"} baseSalary={1500}/>
     </>
   )
 }
