@@ -1,15 +1,14 @@
-import './App.css'
-import Employee from './components/Employee/Employee'
+import "./App.css";
+import EmployeeList from "./components/EmployeeList/EmployeeList";
 // import Sidebar from './components/Sidebar/Sidebar.jsx'
 
 function App() {
-
-  return (
-    <>
-      {/* <Sidebar /> */}
-      <Employee name={"Antonio"} baseSalary={1500}/>
-    </>
-  )
+    return (
+        <>
+            {/* <Sidebar /> */}
+            <EmployeeList />
+        </>
+    );
 }
 
-export default App
+export default App;
