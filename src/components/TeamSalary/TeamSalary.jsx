@@ -1,9 +1,9 @@
 function TeamSalary({ name, salary, updateSalary }) {
   return (
     <>
-      <p>{name}</p>
-      <p>{salary}</p>
-      <button>Click</button>
+      <p>Name: {name}</p>
+      <p>Salary: {salary}</p>
+      <button onClick={updateSalary}>Raise: {name}</button>
     </>
   );
 }
