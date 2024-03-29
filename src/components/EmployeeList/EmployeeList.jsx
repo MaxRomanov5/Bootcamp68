@@ -3,6 +3,8 @@ import Employee from "../Employee/Employee";
 import TeamSalary from "../TeamSalary/TeamSalary";
 import TotalTeamSalary from "../TotalTeamSalary/TotalTeamSalary";
 import localStorage from "../../helpers/localStorage";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 function EmployeeList() {
   const [bonus, setBonus] = useState(50);
@@ -42,6 +44,28 @@ function EmployeeList() {
   }, [firstTeamSalary, secondTeamSalary]);
 
   const totalSalary = firstTeamSalary + secondTeamSalary;
+
+  useEffect(() => {
+    const visitsCount = localStorage.load("visitsCount");
+    if (!visitsCount) {
+      iziToast.show({
+        title: "Hey",
+        message: "First visit",
+      });
+    } else {
+      iziToast.show({
+        title: "Hey",
+        message: `You visited page ${visitsCount} times`,
+      });
+    }
+    return () => {
+      localStorage.save(
+        "visitsCount",
+        localStorage.load("visitsCount") + 1 || 0
+      );
+    };
+  }, []);
+
   return (
     <div>
       {/* <Employee
