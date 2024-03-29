@@ -16,10 +16,17 @@ function EmployeeList() {
       return 0;
     }
   });
+
+  const [teamBonus, setTeamBonus] = useState(0);
+
   const dataSecondTeam = localStorage.load("secondTeamSalary");
   const [secondTeamSalary, setSecondTeamSalary] = useState(
     dataSecondTeam ? dataSecondTeam : 0
   );
+
+  function raiseTeamBonus() {
+    setTeamBonus(teamBonus + 10);
+  }
 
   function handleRaiseBonus() {
     setBonus(bonus + 50);
@@ -42,6 +49,15 @@ function EmployeeList() {
     localStorage.save("firstTeamSalary", firstTeamSalary);
     localStorage.save("secondTeamSalary", secondTeamSalary);
   }, [firstTeamSalary, secondTeamSalary]);
+
+  useEffect(() => {
+    if (teamBonus >= 100) {
+      iziToast.info({
+        title: "attention",
+        message: "maximum amount of team bonus",
+      });
+    }
+  }, [teamBonus]);
 
   const totalSalary = firstTeamSalary + secondTeamSalary;
 
@@ -86,15 +102,21 @@ function EmployeeList() {
         bonus={Number((bonus / 3).toFixed(2))}
         handleRaiseBonus={handleRaiseBonus}
       /> */}
+
+      <p>Team bonus: {teamBonus}</p>
       <TeamSalary
         name={"firstTeam"}
         salary={firstTeamSalary}
         updateSalary={handleFirstTeamSalary}
+        raiseTeamBonus={raiseTeamBonus}
+        teamBonus={teamBonus}
       />
       <TeamSalary
         name={"secondTeam"}
         salary={secondTeamSalary}
         updateSalary={handleSecondTeamSalary}
+        raiseTeamBonus={raiseTeamBonus}
+        teamBonus={teamBonus}
       />
       {totalSalary > 0 ? (
         <>
