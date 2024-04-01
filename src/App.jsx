@@ -1,13 +1,14 @@
-import './App.css'
-import Sidebar from './components/Sidebar/Sidebar.jsx'
+import "./App.css";
+import OrderPizza from "./components/OrderPizza/OrderPizza.jsx";
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
 
 function App() {
-
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <OrderPizza />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
