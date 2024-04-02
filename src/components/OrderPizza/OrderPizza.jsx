@@ -1,26 +1,18 @@
 import { useId, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import { nanoid } from "nanoid";
 
 const scheme = yup.object().shape({
   pizzaName: yup
     .string()
-    .oneOf(["margarita", "peperoni", "4_cheese"])
+    .oneOf(["margarita", "pepperoni", "4_cheese"])
     .required("Required"),
   pizzaSize: yup.string().oneOf(["s", "m", "l"]).required("Required"),
 });
 
-function OrderPizza() {
+function OrderPizza({ addPizza }) {
   const pizzaNameId = useId();
-  const [pizzaName, setPizzaName] = useState("pepperoni");
-
-  const [pizzaSize, setPizzaSize] = useState("l");
-
-  const [ingredients, setIngredients] = useState({
-    meat: false,
-    cheese: false,
-    vegetarian: false,
-  });
 
   const userIngredients = {
     meat: "Double Meat",
@@ -28,38 +20,26 @@ function OrderPizza() {
     vegetarian: "Vegetarian",
   };
 
-  const handlePizzaName = (e) => {
-    setPizzaName(e.target.value);
-  };
+  // function handleOrderPizza() {
+  //   alert(
+  //     "You ordered pizza: " +
+  //       pizzaName +
+  //       " Size:" +
+  //       pizzaSize.toUpperCase() +
+  //       " Ingredients: " +
+  //       getIngredients(ingredients)
+  //   );
+  // }
 
-  const handlePizzaSize = (e) => {
-    setPizzaSize(e.target.value);
-  };
-
-  function handleIngredients(e) {
-    setIngredients({ ...ingredients, [e.target.name]: e.target.checked });
-  }
-
-  function handleOrderPizza() {
-    alert(
-      "You ordered pizza: " +
-        pizzaName +
-        " Size:" +
-        pizzaSize.toUpperCase() +
-        " Ingredients: " +
-        getIngredients(ingredients)
-    );
-  }
-
-  function getIngredients(ingredientList) {
-    const keys = Object.keys(ingredientList);
-    const resultArr = [];
-    for (const ingredient of keys) {
-      if (ingredientList[ingredient])
-        resultArr.push(userIngredients[ingredient]);
-    }
-    return resultArr.join(", ");
-  }
+  // function getIngredients(ingredientList) {
+  //   const keys = Object.keys(ingredientList);
+  //   const resultArr = [];
+  //   for (const ingredient of keys) {
+  //     if (ingredientList[ingredient])
+  //       resultArr.push(userIngredients[ingredient]);
+  //   }
+  //   return resultArr.join(", ");
+  // }
 
   const initialValue = {
     pizzaName: "margarita",
@@ -69,6 +49,8 @@ function OrderPizza() {
 
   function handleSubmit(values, actions) {
     console.log(values);
+    values.id = nanoid();
+    addPizza(values);
     actions.resetForm();
   }
 
