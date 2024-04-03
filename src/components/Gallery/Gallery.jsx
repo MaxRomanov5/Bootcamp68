@@ -1,17 +1,35 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "../../api/product";
+import GalleryList from "../GalleryList/GalleryList";
+
 function Gallery() {
   const [products, setProducts] = useState([]);
+  const [offset, setOffset] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
-      const productsList = await fetchProducts(0);
-      setProducts(productsList);
+      setLoading(true)
+      const productsList = await fetchProducts(offset);
+      setProducts([...products, ...productsList]);
+      setLoading(false)
     };
     getData();
-  }, []);
+  }, [offset]);
 
-  return <div>Gallery</div>;
+  
+  function handleLoadMore() {
+    setOffset(offset+10)
+  }
+
+  return <div>
+    <h1>Gallery</h1>
+    {products.length === 0 && <h2>No products yet.</h2>}
+    {products.length > 0 && <><GalleryList data={products}/><button type="button" onClick={handleLoadMore}>Load more</button></>}
+   
+    {loading && <h2>Loading more...</h2>}
+    
+  </div>;
 }
 
 export default Gallery;
