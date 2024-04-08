@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchProducts, fetchSingleProduct } from "../../api/product";
-import GalleryList from "../GalleryList/GalleryList";
-import SerchForm from "../SerchForm/SerchForm";
-import Product from "../Product/Product";
+import GalleryList from '../../components/GalleryList/GalleryList.jsx';
+import SerchForm from "../../components/SerchForm/SerchForm.jsx";
+import Product from "../../components/Product/Product.jsx";
 
 function Gallery() {
     const [product, setProduct] = useState("");
