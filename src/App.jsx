@@ -7,6 +7,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import BookList from "./pages/BookList/BookList.jsx";
 import BookDetails from "./pages/BookDetails/BookDetails.jsx";
+import Review from "./components/Review/Review.jsx";
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/country" element={<CountryList />} />
           <Route path="/books" element={<BookList />} />
-          <Route path="/books/:bookId" element={<BookDetails />} />
+          <Route path="/books/:bookId" element={<BookDetails />}>
+            <Route path="reviews" element={<Review />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
