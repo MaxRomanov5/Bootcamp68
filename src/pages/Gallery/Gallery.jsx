@@ -3,13 +3,26 @@ import { fetchProducts, fetchSingleProduct } from "../../api/product";
 import GalleryList from '../../components/GalleryList/GalleryList.jsx';
 import SerchForm from "../../components/SerchForm/SerchForm.jsx";
 import Product from "../../components/Product/Product.jsx";
+import { useSearchParams } from "react-router-dom";
 
 function Gallery() {
     const [product, setProduct] = useState("");
     const [offset, setOffset] = useState(0);
     const [loading, setLoading] = useState(false);
     const [searchQwery, setSearchQwery] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const queryParam = searchParams.get("query") || ""
+
+    useEffect(() => {
+        async function getProduct() {
+            if (queryParam) {
+                const response = await fetchSingleProduct(queryParam);
+                setProduct(response);
+            }
+        }
+        getProduct()
+    }, [queryParam])
     // useEffect(() => {
     //   const getData = async () => {
     //     setLoading(true)
@@ -25,6 +38,7 @@ function Gallery() {
     // }
     const onClick = async () => {
         const response = await fetchSingleProduct(searchQwery);
+        setSearchParams({query: searchQwery})
         setProduct(response);
     };
 
