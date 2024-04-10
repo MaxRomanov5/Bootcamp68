@@ -3,21 +3,18 @@ import "./App.css";
 import OrderPizza from "./components/OrderPizza/OrderPizza.jsx";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import VisiblePizza from "./components/VisiblePizza/VisiblePizza.jsx";
+import { useSelector } from "react-redux";
+import { getPizza } from "./redux/selectors.js";
 
 function App() {
-  const [orderedPizza, setOrderedPizza] = useState([]);
-
-  function addPizza(newPizza) {
-    setOrderedPizza((prev) => {
-      return [...prev, newPizza];
-    });
-  }
+  const pizzas = useSelector(getPizza);
+  console.log(pizzas);
 
   return (
     <>
       {/* <Sidebar /> */}
-      <OrderPizza addPizza={addPizza} />
-      <VisiblePizza pizzaList={orderedPizza} />
+      <OrderPizza />
+      <VisiblePizza pizzaList={pizzas} />
     </>
   );
 }

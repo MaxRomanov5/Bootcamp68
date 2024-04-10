@@ -2,6 +2,8 @@ import { useId, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addPizza } from "../../redux/action";
 
 const scheme = yup.object().shape({
   pizzaName: yup
@@ -11,35 +13,16 @@ const scheme = yup.object().shape({
   pizzaSize: yup.string().oneOf(["s", "m", "l"]).required("Required"),
 });
 
-function OrderPizza({ addPizza }) {
+function OrderPizza() {
   const pizzaNameId = useId();
+
+  const dispatch = useDispatch();
 
   const userIngredients = {
     meat: "Double Meat",
     cheese: "Double Cheese",
     vegetarian: "Vegetarian",
   };
-
-  // function handleOrderPizza() {
-  //   alert(
-  //     "You ordered pizza: " +
-  //       pizzaName +
-  //       " Size:" +
-  //       pizzaSize.toUpperCase() +
-  //       " Ingredients: " +
-  //       getIngredients(ingredients)
-  //   );
-  // }
-
-  // function getIngredients(ingredientList) {
-  //   const keys = Object.keys(ingredientList);
-  //   const resultArr = [];
-  //   for (const ingredient of keys) {
-  //     if (ingredientList[ingredient])
-  //       resultArr.push(userIngredients[ingredient]);
-  //   }
-  //   return resultArr.join(", ");
-  // }
 
   const initialValue = {
     pizzaName: "margarita",
@@ -50,7 +33,7 @@ function OrderPizza({ addPizza }) {
   function handleSubmit(values, actions) {
     console.log(values);
     values.id = nanoid();
-    addPizza(values);
+    dispatch(addPizza(values));
     actions.resetForm();
   }
 
