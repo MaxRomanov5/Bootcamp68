@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { removePizza } from "../../redux/action";
+
 const VisiblePizza = ({ pizzaList }) => {
+  const dispatch = useDispatch();
+
   return (
     <div>
       {pizzaList.map((item) => {
@@ -13,6 +18,13 @@ const VisiblePizza = ({ pizzaList }) => {
                 })}
               </ul>
             )}
+            <button
+              onClick={() => {
+                dispatch(removePizza(item.id));
+              }}
+            >
+              Remove
+            </button>
           </li>
         );
       })}

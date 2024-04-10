@@ -6,3 +6,9 @@ export const addPizza = (pizza) => {
     },
   };
 };
+export const removePizza = (id) => {
+  return {
+    type: "PIZZA/REMOVE_PIZZA",
+    payload: id,
+  };
+};
