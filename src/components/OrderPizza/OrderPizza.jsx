@@ -1,16 +1,16 @@
-import { useId, useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as yup from "yup";
-import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
-import { addPizza } from "../../redux/action";
+import { useId, useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addPizza } from '../../redux/slicePizza';
 
 const scheme = yup.object().shape({
   pizzaName: yup
     .string()
-    .oneOf(["margarita", "pepperoni", "4_cheese"])
-    .required("Required"),
-  pizzaSize: yup.string().oneOf(["s", "m", "l"]).required("Required"),
+    .oneOf(['margarita', 'pepperoni', '4_cheese'])
+    .required('Required'),
+  pizzaSize: yup.string().oneOf(['s', 'm', 'l']).required('Required'),
 });
 
 function OrderPizza() {
@@ -19,14 +19,14 @@ function OrderPizza() {
   const dispatch = useDispatch();
 
   const userIngredients = {
-    meat: "Double Meat",
-    cheese: "Double Cheese",
-    vegetarian: "Vegetarian",
+    meat: 'Double Meat',
+    cheese: 'Double Cheese',
+    vegetarian: 'Vegetarian',
   };
 
   const initialValue = {
-    pizzaName: "margarita",
-    pizzaSize: "",
+    pizzaName: 'margarita',
+    pizzaSize: '',
     bonusIngredients: [],
   };
 

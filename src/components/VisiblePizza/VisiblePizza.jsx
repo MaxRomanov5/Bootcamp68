@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { removePizza } from "../../redux/action";
+import { useDispatch } from 'react-redux';
+// import { removePizza } from "../../redux/action";
 
 const VisiblePizza = ({ pizzaList }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const VisiblePizza = ({ pizzaList }) => {
             )}
             <button
               onClick={() => {
-                dispatch(removePizza(item.id));
+                // dispatch(removePizza(item.id));
               }}
             >
               Remove
