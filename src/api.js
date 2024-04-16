@@ -11,3 +11,13 @@ export function getSingleProduct(id) {
     const data = axios.get(`/products/${id}`);
     return data;
 }
+
+export function postGood(item) {
+    const data = axios.post("/products", item, {
+        headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+        },
+    });
+    return data;
+}
