@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectGoods, selectLoading } from "../components/redux/gallerySlice";
 import { useEffect } from "react";
 import { fetchGoods } from "../components/redux/operations";
+import { filteredGoods, selectGoods, selectLoading } from "../components/redux/selectors";
 
 function Gallery() {
     const goods = useSelector(selectGoods);
     const loading = useSelector(selectLoading);
-    console.log(goods);
+    const filteredGoodsArr = useSelector(filteredGoods)
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchGoods());
@@ -15,8 +16,8 @@ function Gallery() {
     return (
         <>
             {loading && <h3>Loading...</h3>}
-            <ul>
-                {goods.map((item) => {
+            {filteredGoodsArr.length > 0 && <ul>
+                {filteredGoodsArr?.map((item) => {
                     return (
                         <li key={item.id}>
                             <h3>{item.title}:</h3>
@@ -24,7 +25,7 @@ function Gallery() {
                         </li>
                     );
                 })}
-            </ul>
+            </ul>}
         </>
     );
 }

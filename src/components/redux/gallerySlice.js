@@ -10,11 +10,6 @@ const initialState = {
 const gallerySlice = createSlice({
     name: "goods",
     initialState,
-    selectors: {
-        selectGoods: (state) => state.goods,
-        selectError: (state) => state.error,
-        selectLoading: (state) => state.loading,
-    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchGoods.fulfilled, (state, { payload }) => {
@@ -33,5 +28,3 @@ const gallerySlice = createSlice({
 });
 
 export const goodsReducer = gallerySlice.reducer;
-export const { selectGoods, selectError, selectLoading } =
-    gallerySlice.selectors;
